@@ -18,20 +18,23 @@ class Negyzet(Teglalap):
         self.oldal1 = oldal1
         self.oldal2 = oldal1
 
+if __name__ == "__main__":
+    t1 = Teglalap()
+    print(t1.szelesseg, t1.magassag)
+    print(t1.szog)
+    t2 = Teglalap(20, 30)
+    print(t2.szelesseg, t2.magassag)
+    print(t2.szog)
+    print (t1.terulet())
+    print (t1.kerulet())
+    print (t2.terulet())
+    print (t2.kerulet())
+
+    n1= Negyzet(5)
+    print(n1.terulet())
+    print(n1.kerulet())
+    print(n1.szog)
 
 
-t1 = Teglalap()
-print(t1.szelesseg, t1.magassag)
-print(t1.szog)
-t2 = Teglalap(20, 30)
-print(t2.szelesseg, t2.magassag)
-print(t2.szog)
-print (t1.terulet())
-print (t1.kerulet())
-print (t2.terulet())
-print (t2.kerulet())
 
-n1= Negyzet(5)
-print(n1.terulet())
-print(n1.kerulet())
-print(n1.szog)
+
