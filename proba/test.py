@@ -4,7 +4,6 @@ import sqlite3
 from datetime import datetime
 
 
-
 def terheles_merese():
     magok = os.cpu_count()
     terheles = os.getloadavg()[0]
@@ -43,6 +42,7 @@ print(f"A memóriahasználat: {mem_merese()}%")
 
 
 idopont = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 kapcsolat = sqlite3.connect("monitor.db")
 kapcsolat.execute("""
     CREATE TABLE IF NOT EXISTS meresek (
@@ -55,6 +55,5 @@ kapcsolat.execute("""
 """)
 
 kapcsolat.execute("INSERT INTO meresek(idopont,terheles,lemez,memoria) VALUES(?,?,?,?)", (idopont, terheles_merese(), lemez_merese(), mem_merese(),))
-
 kapcsolat.commit()
 kapcsolat.close()
