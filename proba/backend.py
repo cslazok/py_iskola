@@ -11,14 +11,13 @@ class Kezelo(BaseHTTPRequestHandler):
             terheles = meres.terheles_merese()
             lemez = meres.lemez_merese()
             memoria = meres.mem_merese()
-
             adatbazis.mentes(terheles, lemez, memoria)
-
-            valasz = f"Terhelés: {terheles}% | Lemez: {lemez}% | Memória: {memoria}% (elmentve)"
-
-            valasz = f"Terhelés: {meres.terheles_merese()}% | Lemez:{meres.lemez_merese()}%| Memória:{meres.mem_merese()}%"    
+            valasz = f"Terhelés: {terheles}% | Lemez: {lemez}% | Memória: {memoria}% (elmentve)" 
         elif self.path == "/meresek":
-            valasz = "Itt majd a mérések lesznek."
+            sorok = adatbazis.lekerdezes()
+            valasz = ""
+            for sor in sorok:
+                valasz += f"{sor[1]} | terhelés: {sor[2]}% | lemez: {sor[3]}% | memória: {sor[4]}%\n"
         else:
             valasz = "Nincs ilyen oldal."
 

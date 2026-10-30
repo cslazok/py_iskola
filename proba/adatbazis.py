@@ -18,3 +18,10 @@ def mentes(terheles, lemez, memoria):
     kapcsolat.execute("INSERT INTO meresek(idopont,terheles,lemez,memoria) VALUES(?,?,?,?)", (idopont, terheles, lemez, memoria,))
     kapcsolat.commit()
     kapcsolat.close()
+
+def lekerdezes():
+    kapcsolat = sqlite3.connect("monitor.db")
+    eredmeny = kapcsolat.execute("SELECT * FROM meresek where lemez IS NOT NULL")
+    sorok = eredmeny.fetchall()
+    kapcsolat.close()
+    return sorok
