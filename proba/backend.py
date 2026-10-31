@@ -2,29 +2,38 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import meres
 import adatbazis
 import ping
+from urllib.parse import urlparse, parse_qs
+
 
 class Kezelo(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        if self.path == "/":
+        reszek = urlparse(self.path)
+        utvonal = reszek.path
+        adatok = parse_qs(reszek.query)
+
+        if utvonal == "/":
             valasz = "Ez a backend"
-        elif self.path == "/meres":
+        elif utvonal == "/meres":
             terheles = meres.terheles_merese()
             lemez = meres.lemez_merese()
             memoria = meres.mem_merese()
             adatbazis.mentes(terheles, lemez, memoria)
             valasz = f"Terhelés: {terheles}% | Lemez: {lemez}% | Memória: {memoria}% (elmentve)" 
-        elif self.path == "/meresek":
+        elif utvonal == "/meresek":
             sorok = adatbazis.lekerdezes()
             valasz = ""
             for sor in sorok:
                 valasz += f"{sor[1]} | terhelés: {sor[2]}% | lemez: {sor[3]}% | memória: {sor[4]}%\n"
-        elif self.path == "/ping":
-            cim = "google.com"
-            elerheto, ido = ping.ping(cim, 443)
-            adatbazis.ping_mentes(cim, elerheto,ido)
-            valasz = f"{cim}: elérhető: {elerheto}, válaszidő: {ido} ms (elmentve)"
-        elif self.path == "/pingek":
+        elif utvonal == "/ping":
+            if "cim" in adatok:
+                cim = adatok["cim"][0] 
+                elerheto, ido = ping.ping(cim, 443)
+                adatbazis.ping_mentes(cim, elerheto,ido)
+                valasz = f"{cim}: elérhető: {elerheto}, válaszidő: {ido} ms (elmentve)"
+            else:
+                valasz = "Adj meg egy címet!"        
+        elif utvonal == "/pingek":
             sorok = adatbazis.ping_lekerdezes()
             valasz = ""
             for sor in sorok:
