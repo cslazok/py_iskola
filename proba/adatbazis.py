@@ -25,3 +25,21 @@ def lekerdezes():
     sorok = eredmeny.fetchall()
     kapcsolat.close()
     return sorok
+
+def ping_mentes(cim, elerheto, valaszido):
+
+    idopont = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    kapcsolat = sqlite3.connect("monitor.db")
+    kapcsolat.execute("""
+        CREATE TABLE IF NOT EXISTS ellenorzesek (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            idopont TEXT,
+            cim TEXT,
+            elerheto INTEGER,
+            valaszido REAL
+        )
+    """)
+    kapcsolat.execute("INSERT INTO ellenorzesek(idopont,cim,elerheto,valaszido) VALUES(?,?,?,?)", (idopont, cim, elerheto, valaszido,))
+    kapcsolat.commit()
+    kapcsolat.close()
