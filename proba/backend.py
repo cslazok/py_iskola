@@ -1,6 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import meres
 import adatbazis
+import ping
 
 class Kezelo(BaseHTTPRequestHandler):
 
@@ -18,6 +19,16 @@ class Kezelo(BaseHTTPRequestHandler):
             valasz = ""
             for sor in sorok:
                 valasz += f"{sor[1]} | terhelés: {sor[2]}% | lemez: {sor[3]}% | memória: {sor[4]}%\n"
+        elif self.path == "/ping":
+            cim = "google.com"
+            elerheto, ido = ping.ping(cim, 443)
+            adatbazis.ping_mentes(cim, elerheto,ido)
+            valasz = f"{cim}: elérhető: {elerheto}, válaszidő: {ido} ms (elmentve)"
+        elif self.path == "/pingek":
+            sorok = adatbazis.ping_lekerdezes()
+            valasz = ""
+            for sor in sorok:
+                valasz += f"{sor[1]} | {sor[2]} | elérhető: {sor[3]} | {sor[4]} ms\n"
         else:
             valasz = "Nincs ilyen oldal."
 
