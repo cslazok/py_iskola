@@ -1,5 +1,4 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-import meres
 import adatbazis
 import ping
 from urllib.parse import urlparse, parse_qs
@@ -14,17 +13,6 @@ class Kezelo(BaseHTTPRequestHandler):
 
         if utvonal == "/":
             valasz = "Ez a backend"
-        elif utvonal == "/meres":
-            terheles = meres.terheles_merese()
-            lemez = meres.lemez_merese()
-            memoria = meres.mem_merese()
-            adatbazis.mentes(terheles, lemez, memoria)
-            valasz = f"Terhelés: {terheles}% | Lemez: {lemez}% | Memória: {memoria}% (elmentve)" 
-        elif utvonal == "/meresek":
-            sorok = adatbazis.lekerdezes()
-            valasz = ""
-            for sor in sorok:
-                valasz += f"{sor[1]} | terhelés: {sor[2]}% | lemez: {sor[3]}% | memória: {sor[4]}%\n"
         elif utvonal == "/ping":
             if "cim" in adatok:
                 cim = adatok["cim"][0] 
