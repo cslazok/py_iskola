@@ -6,7 +6,11 @@ def pingeles():
     try:
         valasz = urllib.request.urlopen(f"http://localhost:8000/ping?cim={cim}")
         szoveg = valasz.read().decode("utf-8")
-        eredmeny.config(text=szoveg)
+        if "True" in szoveg:
+            eredmeny.config(text=szoveg, fg="green")
+        else:
+            eredmeny.config(text=szoveg, fg="red")
+
     except OSError:
         eredmeny.config(text= "A backend nem fut!")
 
