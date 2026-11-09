@@ -29,13 +29,13 @@ gomb = tk.Button(ablak, text="Ping", command=pingeles)
 gomb.grid(row=0, column=2)
 
 eredmeny = tk.Label(ablak, text="")
-eredmeny.grid(row=1, column=0, columnspan=3)
+eredmeny.grid(row=1, column=0, columnspan=4, sticky="w")
 
 lista_gomb = tk.Button(ablak, text="Lista", command=listazas)
-lista_gomb.grid(row=1, column=2)
+lista_gomb.grid(row=0, column=3)
 
 lista = tk.Label(ablak, text="", justify="left")
-lista.grid(row=2, column=0, columnspan=3)
+lista.grid(row=2, column=0, columnspan=4, sticky="w")
 
 
 ablak.mainloop()
