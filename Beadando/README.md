@@ -1,27 +1,45 @@
-Egy egyszerű program, amivel meg lehet nézni, hogy egy gép vagy weboldal elérhető-e a hálózaton, és mennyi a válaszideje. Az eredményeket adatbázisba menti, és vissza lehet nézni őket. Python egyetemi beadandó feladathoz készült.
+# Hálózatfigyelő
 
-Így működik:
+- Név: Lázok Dániel Csaba
+- Neptun-kód: PBXQH9
+- Tárgy: Szkript nyelvek
+- Tagozat: levelező
+- Labor azonosító: L01
 
-- backend.py: a szerver (localhost:8000), ez kapja a kéréseket, pingel, ment és válaszol
-- frontend.py: az ablak (tkinter), itt lehet beírni a címet és megnézni az előzőleg lekért oldalak eredményét.
-- ping.py: lepingeli a megadott címet és méri a válaszidőt
-- adatbazis.py: ez menti és olvassa vissza az adatokat
+## A feladat leírása
 
+Egy egyszerű program, amivel meg lehet nézni, hogy egy gép vagy weboldal elérhető-e a hálózaton, és mennyi a válaszideje. Az eredményeket adatbázisba menti, és vissza lehet nézni őket.
 
-
-Indítása:
-
-1. python backend.py - ennek kell futnia először!
-2. python frontend.py - külön terminálban kell futtatni
-
-Ha a backend nem fut, az ablak kiírja, hogy "A backend nem fut!".
-
-Mit használ?
+## Használat
 
 Nem kell semmit telepíteni, csak a Python beépített moduljait használja, ezért Windowson és Linuxon is működik.
 
-A gyakorlas mappa:
+Indítás:
 
-Meghajtó és cpu mérését és kiolvasását akartam eredeti beadandónak elkészíteni, de csak linuxon futott volna, ezért más témát kerestem, de mivel elkészítettem őket feltöltöm, nincs benne semmi olyan adat ami nem lehetne publikus.
+    python main.py
 
-Készítette: Lázok Dániel Csaba 
+A mezőbe kell beírni egy címet (pl. index.hu), utána:
+
+- Ping: lepingeli a címet, és kiírja, hogy elérhető-e és mennyi a válaszidő (zöld, ha elérhető, piros, ha nem)
+- Lista: megmutatja az eddigi pingeket az adatbázisból
+- Törlés: kiüríti a mezőt és az ablakot
+
+Ha üresen nyomod meg a Ping gombot, kiírja, hogy írj be egy címet.
+
+## Felépítés
+
+- main.py: innen indul a program, itt van az ablak
+  - pingeles_LDC: lepingeli a beírt címet és elmenti
+  - listazas_LDC: kiírja az eddigi pingeket
+  - torles_LDC: kiüríti a mezőt és az ablakot
+- Ping_LDC.py: saját modul
+  - HalozatLDC osztály
+    - ping_LDC: megnézi, elérhető-e a cím, és mennyi a válaszidő
+    - mentes_LDC: elmenti az eredményt az adatbázisba
+    - lista_LDC: visszaadja az elmentett pingeket
+- Használt modulok: tkinter, socket, time, sqlite3, datetime, os
+
+
+## Előzmények
+
+A korábbi változatok a `Gyakorlas/Beadando_elozmenyek` mappában vannak. Először a gép terhelését, lemezét és memóriáját mértem, de az csak Linuxon működött, ezért váltottam a pingre. Utána egy két részből álló (backend és frontend) változat készült, amiből ez az egyszerűbb, egy programos változat lett.
