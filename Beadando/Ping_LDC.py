@@ -5,6 +5,16 @@ import os
 from datetime import datetime
 
 
+def idopont_LDC():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+def ures_LDC(cim):
+    return cim == ""
+
+def sor_szoveg_LDC(sor):
+    return f"{sor[1]} | {sor[2]} | elérhető: {sor[3]} | {sor[4]} ms\n"
+
+
 class HalozatLDC:
 
     def __init__(self):
@@ -35,12 +45,11 @@ class HalozatLDC:
             return False, None
 
     def mentes_LDC(self, cim, elerheto, valaszido):
-        idopont = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        idopont = idopont_LDC()
         kapcsolat = sqlite3.connect(self.adatbazis)
         kapcsolat.execute("INSERT INTO ellenorzesek(idopont,cim,elerheto,valaszido) VALUES(?,?,?,?)", (idopont, cim, elerheto, valaszido))
         kapcsolat.commit()
         kapcsolat.close()
-
 
     def lista_LDC(self):
         kapcsolat = sqlite3.connect(self.adatbazis)

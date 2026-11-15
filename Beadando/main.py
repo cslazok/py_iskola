@@ -5,7 +5,7 @@ halozat = Ping_LDC.HalozatLDC()
 
 def pingeles_LDC():
     cim = mezo.get()
-    if cim == "":
+    if Ping_LDC.ures_LDC(cim):
         eredmeny.config(text="írj be egy címet", fg= "orange")
         return
     elerheto, ido = halozat.ping_LDC(cim, 443)
@@ -20,7 +20,7 @@ def listazas_LDC():
     sorok = halozat.lista_LDC()
     szoveg = ""
     for sor in sorok:
-        szoveg += f"{sor[1]} | {sor[2]} | elérhető: {sor[3]} | {sor[4]} ms\n"
+        szoveg += Ping_LDC.sor_szoveg_LDC(sor)
     lista.config(text=szoveg)
 
 

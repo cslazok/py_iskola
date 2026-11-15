@@ -33,6 +33,9 @@ Ha üresen nyomod meg a Ping gombot, kiírja, hogy írj be egy címet.
   - listazas_LDC: kiírja az eddigi pingeket
   - torles_LDC: kiüríti a mezőt és az ablakot
 - Ping_LDC.py: saját modul
+  - idopont_LDC: visszaadja a mostani időt szövegként
+  - ures_LDC: megnézi, hogy üres-e a beírt cím
+  - sor_szoveg_LDC: egy elmentett pingből kiírható szöveget csinál
   - HalozatLDC osztály
     - ping_LDC: megnézi, elérhető-e a cím, és mennyi a válaszidő
     - mentes_LDC: elmenti az eredményt az adatbázisba
