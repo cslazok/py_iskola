@@ -1,4 +1,4 @@
-# Hálózatfigyelő
+## PingFigyelő: 
 
 - Név: Lázok Dániel Csaba
 - Neptun-kód: PBXQH9
