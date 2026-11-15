@@ -1,15 +1,15 @@
 import Ping_LDC
 import tkinter as tk
 
-halozat = Ping_LDC.HalozatLDC()
+app = Ping_LDC.HalozatLDC()
 
 def pingeles_LDC():
     cim = mezo.get()
     if Ping_LDC.ures_LDC(cim):
         eredmeny.config(text="írj be egy címet", fg= "orange")
         return
-    elerheto, ido = halozat.ping_LDC(cim, 443)
-    halozat.mentes_LDC(cim, elerheto, ido)
+    elerheto, ido = app.ping_LDC(cim, 443)
+    app.mentes_LDC(cim, elerheto, ido)
     szoveg = f"{cim}: elérhető: {elerheto}, válaszidő: {ido} ms"
     if elerheto:
         eredmeny.config(text=szoveg, fg="green")
@@ -17,7 +17,7 @@ def pingeles_LDC():
         eredmeny.config(text=szoveg, fg="red")
 
 def listazas_LDC():
-    sorok = halozat.lista_LDC()
+    sorok = app.lista_LDC()
     szoveg = ""
     for sor in sorok:
         szoveg += Ping_LDC.sor_szoveg_LDC(sor)
@@ -30,29 +30,29 @@ def torles_LDC():
     lista.config(text="")
 
 
-ablak = tk.Tk()
-ablak.title("Hálózatfigyelő")
-ablak.config(padx=10, pady=10)
+root = tk.Tk()
+root.title("PingFigyelő")
+root.config(padx=10, pady=10)
 
-tk.Label(ablak, text="Cím:").grid(row=0, column=0, padx=5, pady=5)
-mezo = tk.Entry(ablak, width=30)
+tk.Label(root, text="Cím:").grid(row=0, column=0, padx=5, pady=5)
+mezo = tk.Entry(root, width=30)
 mezo.grid(row=0, column=1, padx=5, pady=5)
 
-gomb = tk.Button(ablak, text="Ping", command=pingeles_LDC)
+gomb = tk.Button(root, text="Ping", command=pingeles_LDC)
 gomb.grid(row=0, column=2, padx=5, pady=5)
 
 
-eredmeny = tk.Label(ablak, text="")
+eredmeny = tk.Label(root, text="")
 eredmeny.grid(row=1, column=0, columnspan=5, sticky="w")
 
-lista_gomb = tk.Button(ablak, text="Lista", command=listazas_LDC)
+lista_gomb = tk.Button(root, text="Lista", command=listazas_LDC)
 lista_gomb.grid(row=0, column=3, padx=5, pady=5)
 
-lista = tk.Label(ablak, text="", justify="left", font=("Courier", 10))
+lista = tk.Label(root, text="", justify="left", font=("Courier", 10))
 lista.grid(row=2, column=0, columnspan=5, sticky="w")
 
-torles_gomb = tk.Button(ablak, text="Törlés", command=torles_LDC)
+torles_gomb = tk.Button(root, text="Törlés", command=torles_LDC)
 torles_gomb.grid(row=0, column=4, padx=5, pady=5)
 
 
-ablak.mainloop()
+root.mainloop()
