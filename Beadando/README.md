@@ -26,7 +26,7 @@ A mezőbe kell beírni egy címet (pl. index.hu), utána:
 
 Ha üresen nyomod meg a Ping gombot, kiírja, hogy írj be egy címet.
 
-## Felépítés
+## Modulok és függvények
 
 - main.py: innen indul a program, itt van az ablak
   - pingeles_LDC: lepingeli a beírt címet és elmenti
@@ -36,12 +36,14 @@ Ha üresen nyomod meg a Ping gombot, kiírja, hogy írj be egy címet.
   - idopont_LDC: visszaadja a mostani időt szövegként
   - ures_LDC: megnézi, hogy üres-e a beírt cím
   - sor_szoveg_LDC: egy elmentett pingből kiírható szöveget csinál
-  - HalozatLDC osztály
-    - ping_LDC: megnézi, elérhető-e a cím, és mennyi a válaszidő
-    - mentes_LDC: elmenti az eredményt az adatbázisba
-    - lista_LDC: visszaadja az elmentett pingeket
 - Használt modulok: tkinter, socket, time, sqlite3, datetime, os
 
+## Osztály
+
+- HalozatLDC (a Ping_LDC.py-ban)
+  - ping_LDC: megnézi, elérhető-e a cím, és mennyi a válaszidő
+  - mentes_LDC: elmenti az eredményt az adatbázisba
+  - lista_LDC: visszaadja az elmentett pingeket
 
 ## Előzmények
 
