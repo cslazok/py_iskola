@@ -4,7 +4,7 @@ import tkinter as tk
 app = Ping_LDC.HalozatLDC()
 
 def pingeles_LDC():
-    cim = mezo.get()
+    cim = mezo.get().strip()
     if Ping_LDC.ures_LDC(cim):
         eredmeny.config(text="írj be egy címet", fg= "orange")
         return
@@ -12,9 +12,10 @@ def pingeles_LDC():
     app.mentes_LDC(cim, elerheto, ido)
     szoveg = f"{cim}: elérhető: {elerheto}, válaszidő: {ido} ms"
     if elerheto:
-        eredmeny.config(text=szoveg, fg="green")
+        eredmeny.config(text=f"{cim}: elérhető, válaszidő: {ido} ms", fg="green")
     else:
-        eredmeny.config(text=szoveg, fg="red")
+        eredmeny.config(text=f"{cim}: nem elérhető", fg="red")
+
 
 def listazas_LDC():
     sorok = app.lista_LDC()

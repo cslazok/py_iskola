@@ -12,7 +12,9 @@ def ures_LDC(cim):
     return cim == ""
 
 def sor_szoveg_LDC(sor):
-    return f"{sor[1]} | {sor[2]} | elérhető: {sor[3]} | {sor[4]} ms\n"
+    if sor[3] == 1:
+        return f"{sor[1]} | {sor[2]} | elérhető | {sor[4]} ms\n"
+    return f"{sor[1]} | {sor[2]} | nem elérhető\n"
 
 
 class HalozatLDC:
